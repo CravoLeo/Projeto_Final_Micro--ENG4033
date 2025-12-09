@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Banco de Dados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bancoDados.css') }}">
+</head>
+
+<body>
+    <h1>Tabla de Horários</h1>
+    <h2>{{ aluno.nome }}</h2>
+    <br>
+    <div style="text-align: center;">
+        <a href="/horario/{{ aluno.rfid }}">Adicionar Horário</a>
+    </div>
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Dia da Semana</th>
+                <th>Horário da Aula</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hora in aluno.horarios %}
+            <tr>
+                <td>{{ hora.dia }}</td>
+                <td>{{ hora['horario_inicio'] }} - {{hora['horario_final'] }}</td>
+                <td>
+                    <form action="/remover_horario" method="POST">
+                        <input type="hidden" name="rfid" value="{{ aluno.rfid }}">
+                        <input type="hidden" name="dia" value="{{ hora.dia }}">
+                        <input type="hidden" name="horario_inicio" value="{{ hora.horario_inicio }}">
+                        <input type="hidden" name="horario_final" value="{{ hora.horario_final }}">
+                        <button type="submit">Remover</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <div style="text-align: center;">
+        <a href="/">Retorno</a>
+    </div>
+
+</body>
+
+</html>

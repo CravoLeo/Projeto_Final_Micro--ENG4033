@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Acicionar Aluno</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='formularios.css') }}">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Adicionar Aluno</h2>
+        <form action="/adicionar_info" method="POST">
+            <div>
+                <label for="nome">Nome: </label>
+                <input type="text" id="nome" name="nome" required/>
+            </div>
+            <div>
+                <label for="sobrenome">Sobrenome: </label>
+                <input type="text" id="sobrenome" name="sobrenome" required/>
+            </div>
+            <div>
+                <label for="rfid">RFID: </label>
+                <input type="text" id="rfid" name="RFID" required/>
+            </div>
+            <div class="button">
+                <button type="submit">Adicionar Aluno</button>
+            </div>
+        </form>
+    </div>
+    
+    <br>
+    <div style="text-align: center;">
+        <a href="/">Retorno</a>
+    </div>
+
+</body>
+
+</html>

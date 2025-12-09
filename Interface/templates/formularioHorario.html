@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Horário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='formularios.css') }}">
+</head>
+    
+<body>
+    <div class="form-container">
+    <form action="/adicionar_horario/{{ rfid }}" method="POST">
+        <h2>Adicione um Horário</h2>
+        <div>
+            <select id="dia" name="dia" required>
+                <option>Dia da Semana</option>
+                <option value="seg">Segunda-Feira</option>
+                <option value="ter">Terça-Feira</option>
+                <option value="qua">Quarta-Feira</option>
+                <option value="qui">Quinta-Feira</option>
+                <option value="sex">Sexta-Feira</option>
+                <option value="sab">Sabado</option>
+                <option value="dom">Domingo</option>
+            </select>
+        </div>
+        <div>
+            <label for="horario_inicio">Horário início: </label>
+            <input type="time" id="horario_inicio" name="horario_inicio" required/>
+         </div>
+         <div>
+            <label for="horario_final">Horário final: </label>
+            <input type="time" id="horario_final" name="horario_final" required/>
+         </div>
+         <div class="button">
+            <button type="submit">Adicionar Horário</button>
+        </div>
+    </form>
+    </div>
+    
+    <br>
+    <a href="/">Retorno</a>
+
+</body>
+
+</html>

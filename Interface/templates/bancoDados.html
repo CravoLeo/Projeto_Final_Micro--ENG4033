@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Banco de Dados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bancoDados.css') }}">
+</head>
+
+<body>
+    <h1>Lista de Cadastros</h1>
+    <div style="text-align: center;">
+        <a href="/adicionar_aluno">Adicionar Aluno</a>
+        <a href="/sincronizar">Sincronizar</a>
+    </div>
+    <br>
+    {% if cadastros %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>RFID</th>
+                <th>Aulas (dias/horários)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cad in cadastros %}
+            <tr>
+                <td>
+                    {{ cad.nome }}
+                    <form action="/remover_aluno/{{ cad.rfid }}" method="GET">
+                        <button type="submit" onclick="return confirm('Confirme a remoção de {{ cad.nome }}')">Remover cadastro</button>
+                    </form>
+                </td>
+                <td>{{ cad.rfid }}</td>
+                <td>
+                    {% if cad.horarios %}
+                        <a href="/horariosAluno/{{ cad.rfid }}">Conferir Horários</a>
+                        <!-- <table>
+                            <tbody>
+                                {% for hora in cad.horarios %}
+                                <tr>
+                                    <td>{{ hora.dia }}</td>
+                                    <td>{{ hora['horario_inicio'] }} - {{hora['horario_final'] }}</td>
+                                    <td>
+                                        <form action="/remover_horario" method="POST">
+                                            <input type="hidden" name="rfid" value="{{ cad.rfid }}">
+                                            <input type="hidden" name="dia" value="{{ hora.dia }}">
+                                            <input type="hidden" name="horario_inicio" value="{{ hora.horario_inicio }}">
+                                            <input type="hidden" name="horario_final" value="{{ hora.horario_final }}">
+                                            <button type="submit">Remover</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> -->
+                    {% else %}
+                        <p>Nenhum horário registrado</p>
+                        <a href="/horario/{{ cad.rfid }}">Adicionar Horário</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% else %}
+        <p>Nenhum dado no Banco</p>
+    {% endif %}
+
+    <br>
+    <h1>Lista de Presenças</h1>
+    <div style="text-align: center;">
+        <a href="/remover_presenca">Limpar Presenças</a>
+    </div>
+    <br>
+    {% if presencas %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>RFID</th>
+                <th>Horário de Chegada</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pre in presencas %}
+            <tr>
+                <td>{{ nomeRFID[pre.rfid] }}</td>
+                <td>{{ pre.rfid }}</td>
+                <td>{{ pre.horario_chegada }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Nenhuma presença registrada</p>
+    {% endif %}    
+    
+</body>
+
+</html>

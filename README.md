@@ -1,5 +1,4 @@
-# Projeto-final-micro---ENG4033
-# Sistema de Controle de Presença por RFID
+# Projeto-final-micro - Sistema de Controle de Presença por RFID
 
 ## Descrição do projeto
 
@@ -7,13 +6,13 @@ Este projeto implementa um **sistema de controle de presença** utilizando **Ard
 
 **Objetivo geral:**
 - Registrar a presença de alunos/usuários por meio de cartões RFID.
-- Exibir e gerenciar as presenças em uma interface (web ou desktop).
-- Permitir a exportação/integração dos dados para um backend (ex.: banco de dados MongoDB).
+- Exibir e gerenciar as presenças em uma interface (servidor web).
+- Permitir a exportação/integração dos dados para um backend (servidor web).
 
 **Principais recursos:**
-- Leitura de cartões RFID (MFRC522) conectados ao Arduino/ESP.
+- Leitura de cartões RFID (MFRC522) conectados ao Arduino.
 - Registro de horário de chegada.
-- Armazenamento em memória/EEPROM e envio por **comunicação serial**.
+- Armazenamento em memória/EEPROM e envio para o servidor **comunicação serial**.
 - Interface de visualização dos dados (servidor Python/Flask).
 - Possibilidade de sincronizar as presenças com um backend/banco de dados.
 
@@ -33,7 +32,7 @@ A arquitetura do sistema pode ser dividida em três partes principais:
 
 **Responsabilidades:**
 - Ler o UID do cartão RFID.
-- Verificar se o cartão é válido (pode ser consultando uma lista local, EEPROM ou tabela).
+- Verificar se o cartão é válido (pode ser consultando uma lista local via EEPROM ou tela tft).
 - Registrar horário de presença (hora/minuto, eventualmente dia).
 - Enviar os registros de presença pela serial em um formato pré-definido (ex.: `PR_ALL:UID,hora,minuto|...`).
 
@@ -52,9 +51,17 @@ A arquitetura do sistema pode ser dividida em três partes principais:
   - Interface web para visualização dos dados.
 
 ## *Montagem do Circuito no Fritzing*
-A imagem abaixo mostra a conexão entre o Arduino Mega 2560 e os principais componentes do sistema:
-![Conexão dos componentes no Arduino](docs/conexao_fritzing.png)
+## A imagem abaixo mostra a conexão entre o Arduino Mega 2560 e os principais componentes do sistema:
+![Conexão dos componentes no Arduino](docs/fritzing.png)
 
 
 ## *Video do projeto*
+
+
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/EK-DMggCPDg?si=MIFfuo-EoCOPPRUK" 
+title="YouTube video player" 
+frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
